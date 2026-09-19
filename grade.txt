@@ -1,0 +1,69 @@
+Project 1a - Detailed evaluation
+GitHub ID: LajISackor
+Repository: LajISackor--shapes-oo-scala
+Commit evaluated: 817e4f6587bd60b8e025331ea00d3abcfe6bb2d8
+Evaluation date: 2026-09-18
+FINAL GRADE: 4.4 points (6.0 required points; up to 3.0 extra credit)
+
+Build and test verification
+Command: sbt -batch -Dsbt.supershell=false test; exit code 0.
+Environment: sbt.version=1.13.0; Eclipse Adoptium Java 25.0.4.
+Compilation and test execution verified: 25 tests, 25 passed, 0 failed, 0 errors.
+The test command was run on the submitted sources without repairing student code.
+TestBoundingBox: 2 JUnit test methods, 0 failures; the second method also executes four additional assertions as bare calls.
+TestShapeValidity: 5 tests, 0 failures. TestSize: 6 tests, 0 failures. TestHeight: 6 tests, 0 failures. TestScale: 6 tests, 0 failures.
+Full log: ../.grading/logs/LajISackor--shapes-oo-scala.log
+
+Required rubric
+1. Missing shape cases: 0.5/0.5
+   Rectangle, Ellipse, Location, and variadic Group cases are present and used throughout the implementation.
+   Evidence: src/main/scala/shapes.scala
+2. boundingBox: 1.0/1.0
+   Recursive rectangle, ellipse, location-offset, and group-union cases produce all supplied expected bounding boxes. The suite compiles and executes, so this gated item earns credit.
+   Evidence: src/main/scala/boundingBox.scala; TestBoundingBox assertions
+3. Constructor validation with tests: 0.5/0.5
+   Rectangle and Ellipse reject nonpositive dimensions, Group rejects empty construction, and TestShapeValidity covers these cases.
+   Evidence: src/main/scala/shapes.scala; src/test/scala/TestShapeValidity.scala
+4. size: 0.5/0.5
+   Counts leaf shapes, unwraps Location, and sums Group members recursively.
+   Evidence: src/main/scala/size.scala
+5. height: 0.5/0.5
+   Computes a consistent node-count tree height through Location and Group nodes.
+   Evidence: src/main/scala/height.scala
+6. scale: 0.5/0.5
+   Recursively scales dimensions, location coordinates, and every group member.
+   Evidence: src/main/scala/scale.scala
+7. Collection operations: 0.5/0.5
+   Uses map, foldLeft, sum, and min/max aggregation in the recursive implementations.
+   Evidence: src/main/scala/boundingBox.scala and src/main/scala/size.scala
+8. TestSize: 0.5/0.5
+   Six runnable tests cover supplied leaf, location, and group fixtures with correct expectations.
+   Evidence: src/test/scala/TestSize.scala
+9. TestHeight: 0.5/0.5
+   Six runnable tests cover supplied fixtures with correct node-height expectations.
+   Evidence: src/test/scala/TestHeight.scala
+10. TestScale: 0.5/0.5
+   Six runnable tests cover leaves, location, basic group, and nested group fixtures; all pass.
+   Evidence: src/test/scala/TestScale.scala
+11. Configurable library logging: 0.4/0.5
+   Debug logging calls and logback are included, but logback.xml is under src/main/scala/resources rather than the standard runtime resource directory, so automatic configuration is not reliable.
+   Evidence: src/main/scala/boundingBox.scala; src/main/scala/resources/logback.xml; build.sbt
+
+Required subtotal: 5.4/6.0
+
+Deductions
+Skeleton incompatibility: -0.0. No substantive incompatible changes to the supplied skeleton found.
+AI record: -1.0. No AI transcript, affidavit, summary, or prompt list was found in the repository.
+
+Extra credit
+draw behavior: +0.0/2.0. No draw behavior submitted.
+Offline BufferedImage tests: +0.0/1.0. No automated BufferedImage tests submitted.
+
+Calculation: 5.4 - 1.0 + 0.0 = 4.4.
+Final grade: 4.4
+
+General evaluation
+This is a strong, complete implementation of the required recursive shape behaviors, with valid constructors and passing size, height, scale, and bounding-box checks. The main issues are the missing AI disclosure and the misplaced logging configuration; the bounding-box test file also leaves four checks inside one test method, although those assertions do execute successfully.
+
+Grading conventions
+Partial rubric credit uses 0.2 increments (0.2/0.4, or full 0.5); extra credit uses 0.5 increments. Tests are assessed individually when compilation and execution succeed. Passing tests do not earn credit for incorrect expectations or missing required coverage. Compatible refactoring is not penalized. Substantive AI summaries/prompt lists are accepted; outside-doc placement costs 0.2, and a missing record costs 1.0 instead. Either consistent edge-count or node-count tree height is accepted. Positive-only versus nonnegative dimension policies, integer scale factors, and unspecified empty-group edge behavior are not independently penalized. Extra credit is added without capping at 6.0.
